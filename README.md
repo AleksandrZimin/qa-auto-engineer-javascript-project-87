@@ -39,6 +39,9 @@ node bin/gendiff.js __fixtures__/file1.yml __fixtures__/file2.yml
 
 # Вывод в формате plain
 node bin/gendiff.js --format plain __fixtures__/file1.json __fixtures__/file2.json
+
+# Вывод в формате json
+node bin/gendiff.js --format json __fixtures__/file1.json __fixtures__/file2.json
 ```
 
 ### Через глобальную команду (после npm link)
@@ -50,10 +53,12 @@ npm link
 # Windows PowerShell — использовать .cmd версию
 gendiff.cmd __fixtures__/file1.json __fixtures__/file2.json
 gendiff.cmd --format plain __fixtures__/file1.json __fixtures__/file2.json
+gendiff.cmd --format json __fixtures__/file1.json __fixtures__/file2.json
 
 # Linux / macOS / WSL
 gendiff __fixtures__/file1.json __fixtures__/file2.json
 gendiff --format plain __fixtures__/file1.json __fixtures__/file2.json
+gendiff --format json __fixtures__/file1.json __fixtures__/file2.json
 ```
 
 ## Форматы вывода
@@ -81,6 +86,27 @@ Property 'proxy' was removed
 Property 'timeout' was updated. From 50 to 20
 Property 'verbose' was added with value: true
 ```
+
+### json
+```bash
+[
+  {
+    "key": "follow",
+    "type": "removed",
+    "value": false
+  },
+  {
+    "key": "timeout",
+    "type": "changed",
+    "oldValue": 50,
+    "newValue": 20
+  },
+  ...
+]
+```
+
+Формат `json` выводит внутреннее дерево различий в виде JSON-массива.  
+Удобен для интеграции с другими инструментами.
 ---
 
 ## Использование как библиотека
