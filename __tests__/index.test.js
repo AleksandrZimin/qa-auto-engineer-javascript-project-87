@@ -20,6 +20,14 @@ Property 'proxy' was removed
 Property 'timeout' was updated. From 50 to 20
 Property 'verbose' was added with value: true`;
 
+const expectedJson = JSON.stringify([
+  { key: 'follow', type: 'removed', value: false },
+  { key: 'host', type: 'unchanged', value: 'hexlet.io' },
+  { key: 'proxy', type: 'removed', value: '123.234.53.22' },
+  { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
+  { key: 'verbose', type: 'added', value: true },
+], null, 2);
+
 // --- stylish ---
 test('diff for flat JSON files (stylish)', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(expectedStylish);
@@ -38,19 +46,24 @@ test('diff for flat YAML files (plain)', () => {
   expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'), 'plain')).toBe(expectedPlain);
 });
 
-test('diff for flat JSON files (json format)', () => {
-  const result = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json');
-  expect(() => JSON.parse(result)).not.toThrow();
-
-  const parsed = JSON.parse(result);
-  expect(Array.isArray(parsed)).toBe(true);
-  expect(parsed[0]).toHaveProperty('key');
-  expect(parsed[0]).toHaveProperty('type');
-});
-
+// --- json ---
 test('diff for flat YAML files (json format)', () => {
   const result = genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'), 'json');
   expect(result).toBe(
     genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')
   );
+});
+
+test('diff for flat JSON files (json format)', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toBe(expectedJson);
+});
+
+// --- edge cases ---
+test('diff for mixed JSON and YAML files', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toBe(expectedStylish);
+});
+
+test('throws on unknown format', () => {
+  expect(() => genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'xml'))
+    .toThrow("Unknown format: 'xml'");
 });
