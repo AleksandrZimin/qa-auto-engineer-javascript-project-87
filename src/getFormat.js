@@ -1,6 +1,6 @@
 import path from 'path'
 
-const getFormat = filepath => {
+const getFormat = (filepath) => {
   return path.extname(filepath).slice(1)
 }
 

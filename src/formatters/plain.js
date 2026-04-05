@@ -1,4 +1,4 @@
-const formatValue = value => {
+const formatValue = (value) => {
   if (typeof value === 'object' && value !== null) {
     return '[complex value]'
   }
@@ -9,7 +9,7 @@ const formatValue = value => {
 }
 
 const formatPlain = (diff, path = '') => {
-  const lines = diff.flatMap(node => {
+  const lines = diff.flatMap((node) => {
     const fullPath = path ? `${path}.${node.key}` : node.key
 
     switch (node.type) {

@@ -12,7 +12,7 @@ const formatValue = (value, depth) => {
 }
 
 const formatStylish = (diff, depth = 1) => {
-  const lines = diff.map(node => {
+  const lines = diff.map((node) => {
     const indent = getIndent(depth)
     switch (node.type) {
       case 'added':
