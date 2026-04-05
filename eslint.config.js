@@ -1,20 +1,28 @@
-import js from '@eslint/js'
-import stylistic from '@stylistic/eslint-plugin'
+import globals from 'globals'
 
 export default [
   {
     ignores: ['node_modules', 'coverage', 'dist'],
   },
-  js.configs.recommended,
-  stylistic.configs.recommended,
   {
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+      },
+    },
     rules: {
       'no-console': 'off',
-      '@stylistic/semi': ['error', 'never'],
-      '@stylistic/quotes': ['error', 'single'],
-      '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/arrow-parens': ['error', 'as-needed'],
-      '@stylistic/eol-last': ['error', 'always'],
+    },
+  },
+  {
+    files: ['**/__tests__/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
     },
   },
 ]
