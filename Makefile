@@ -17,7 +17,7 @@ lint-fix:
 	npx eslint . --fix
 
 gendiff:
-	node bin/gendiff.js -h  
+	node bin/gendiff.js $(ARGS)
 
 test:
 	npm test
