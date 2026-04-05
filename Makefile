@@ -19,4 +19,7 @@ lint-fix:
 gendiff:
 	node bin/gendiff.js -h  
 
+test:
+	npm test
+
 .PHONY: test
