@@ -13,8 +13,8 @@ const fileNameYaml1 = 'file3.yml'
 const fileNameYaml2 = 'file4.yml'
 
 const expectedStylish = fs.readFileSync(getFixturePath('result_stylish.txt'), 'utf-8').trimEnd()
-const expectedPlain   = fs.readFileSync(getFixturePath('result_plain.txt'),   'utf-8').trimEnd()
-const expectedJson    = fs.readFileSync(getFixturePath('result_json.json'),   'utf-8').trimEnd()
+const expectedPlain = fs.readFileSync(getFixturePath('result_plain.txt'), 'utf-8').trimEnd()
+const expectedJson = fs.readFileSync(getFixturePath('result_json.json'), 'utf-8').trimEnd()
 
 // --- stylish ---
 test('diff for nested JSON files (stylish)', () => {
