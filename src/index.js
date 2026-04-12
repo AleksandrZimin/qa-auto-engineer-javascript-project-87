@@ -5,8 +5,13 @@ import buildDiff from './buildDiff.js'
 import getFormatter from './formatters/index.js'
 
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const obj1 = parse(readFile(filepath1), getFormat(filepath1))
-  const obj2 = parse(readFile(filepath2), getFormat(filepath2))
+  const data1 = readFile(filepath1)
+  const format1 = getFormat(filepath1)
+  const obj1 = parse(data1, format1)
+
+  const data2 = readFile(filepath2)
+  const format2 = getFormat(filepath2)
+  const obj2 = parse(data2, format2)
 
   const diff = buildDiff(obj1, obj2)
   const formatter = getFormatter(formatName)

@@ -163,5 +163,18 @@ make lint       # проверка линтером
 ```
 ---
 
+## Примеры сравнения вложенных файлов
+
+### формат stylish
+[![asciicast](https://asciinema.org/a/921279.svg)](https://asciinema.org/a/921279)
+
+### Формат plain
+[![asciicast](https://asciinema.org/a/921281.svg)](https://asciinema.org/a/921281)
+
+### Формат JSON
+[![asciicast](https://asciinema.org/a/921282.svg)](https://asciinema.org/a/921282)
+
+---
+
 ## Ссылки
 [![Hexlet](https://img.shields.io/badge/-Hexlet%20Code%20Review-brightgreen?style=flat-square)](https://ru.hexlet.io/reviews/github.com/AleksandrZimin/qa-auto-engineer-javascript-project-87/pulls)
