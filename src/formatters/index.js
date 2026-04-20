@@ -1,18 +1,13 @@
 import formatStylish from './stylish.js'
 import formatPlain from './plain.js'
-import formatJson from './json.js'
 
-const formatters = {
-  stylish: formatStylish,
-  plain: formatPlain,
-  json: formatJson,
-}
-
-const getFormatter = (formatName) => {
-  if (!formatters[formatName]) {
-    throw new Error(`Unknown format: '${formatName}'. Available formats: ${Object.keys(formatters).join(', ')}`)
+const format = (diff, outputFormat) => {
+  switch (outputFormat) {
+    case 'stylish': return formatStylish(diff)
+    case 'plain': return formatPlain(diff)
+    case 'json': return JSON.stringify(diff, null, 2)
+    default: throw new Error(`Unknown format: '${outputFormat}'`)
   }
-  return formatters[formatName]
 }
 
-export default getFormatter
+export default format

@@ -1,25 +1,22 @@
 import _ from 'lodash'
 
-const buildDiff = (obj1, obj2) => {
-  const keys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)))
+const buildDiff = (data1, data2) => {
+  const keys = _.sortBy([...new Set([...Object.keys(data1), ...Object.keys(data2)])])
 
   return keys.map((key) => {
-    const val1 = obj1[key]
-    const val2 = obj2[key]
-
-    if (!Object.hasOwn(obj2, key)) {
-      return { key, type: 'removed', value: val1 }
+    if (!Object.hasOwn(data1, key)) {
+      return { key, type: 'added', value: data2[key] }
     }
-    if (!Object.hasOwn(obj1, key)) {
-      return { key, type: 'added', value: val2 }
+    if (!Object.hasOwn(data2, key)) {
+      return { key, type: 'removed', value: data1[key] }
     }
-    if (_.isObject(val1) && _.isObject(val2)) {
-      return { key, type: 'nested', children: buildDiff(val1, val2) }
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return { key, type: 'nested', children: buildDiff(data1[key], data2[key]) }
     }
-    if (val1 === val2) {
-      return { key, type: 'unchanged', value: val1 }
+    if (data1[key] !== data2[key]) {
+      return { key, type: 'changed', value1: data1[key], value2: data2[key] }
     }
-    return { key, type: 'changed', oldValue: val1, newValue: val2 }
+    return { key, type: 'unchanged', value: data1[key] }
   })
 }
 
