@@ -7,7 +7,7 @@ const formatValue = (value, depth) => {
   const indent = INDENT.repeat(depth + 1)
   const closingIndent = INDENT.repeat(depth)
   const lines = Object.entries(value).map(
-    ([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`
+    ([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`,
   )
   return `{\n${lines.join('\n')}\n${closingIndent}}`
 }

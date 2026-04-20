@@ -8,7 +8,7 @@ const formatValue = (value) => {
 
 const formatPlain = (diff, path = '') => {
   const lines = diff
-    .filter((node) => node.type !== 'unchanged')
+    .filter(node => node.type !== 'unchanged')
     .map((node) => {
       const fullPath = path ? `${path}.${node.key}` : node.key
       switch (node.type) {
