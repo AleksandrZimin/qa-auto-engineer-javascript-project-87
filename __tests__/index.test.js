@@ -32,6 +32,6 @@ describe('genDiff', () => {
 
   test('throws on unknown format', () => {
     expect(() => genDiff(getFixturePath('file3.json'), getFixturePath('file4.json'), 'xml'))
-      .toThrow("Unknown format: \'xml\'")
+      .toThrow("Unknown format: 'xml'")
   })
 })
