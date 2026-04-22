@@ -16,7 +16,7 @@ const formatValue = (value, depth) => {
 
 const formatStylish = (diff, depth = 0) => {
   const indent = getIndent(depth)
-  const lines = diff.map(node => {
+  const lines = diff.map((node) => {
     switch (node.type) {
       case 'added':
         return `${indent}  + ${node.key}: ${formatValue(node.value, depth + 1)}`

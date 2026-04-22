@@ -4,7 +4,7 @@ import buildDiff from './buildDiff.js'
 import format from './formatters/index.js'
 import parse from './parser.js'
 
-const readFile = filepath => {
+const readFile = (filepath) => {
   const absolutePath = path.resolve(process.cwd(), filepath)
   return fs.readFileSync(absolutePath, 'utf-8')
 }
