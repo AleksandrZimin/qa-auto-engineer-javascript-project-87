@@ -16,7 +16,7 @@ export default [
     rules: {
       'no-console': 'off',
       '@stylistic/semi': ['error', 'never'],
-      '@stylistic/arrow-parens': ['error', 'always'],
+      // '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/eol-last': ['error', 'always'],
     },
   },
