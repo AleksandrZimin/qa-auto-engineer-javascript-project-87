@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 // Пункт 4: константа и функция для отступов
-const INDENT_SIZE = 4;
-const getIndent = (depth) => ' '.repeat(INDENT_SIZE * depth)
+const INDENT_SIZE = 4
+const getIndent = depth => ' '.repeat(INDENT_SIZE * depth)
 
 const formatValue = (value, depth) => {
   if (!_.isObject(value)) return String(value)
@@ -10,13 +10,13 @@ const formatValue = (value, depth) => {
   const closingIndent = getIndent(depth)
   const lines = Object.entries(value).map(
     ([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`,
-  );
+  )
   return `{\n${lines.join('\n')}\n${closingIndent}}`
-};
+}
 
 const formatStylish = (diff, depth = 0) => {
   const indent = getIndent(depth)
-  const lines = diff.map((node) => {
+  const lines = diff.map(node => {
     switch (node.type) {
       case 'added':
         return `${indent}  + ${node.key}: ${formatValue(node.value, depth + 1)}`
@@ -34,8 +34,8 @@ const formatStylish = (diff, depth = 0) => {
       default:
         throw new Error(`Unknown node type: ${node.type}`)
     }
-  });
+  })
   return `{\n${lines.join('\n')}\n${indent}}`
-};
+}
 
 export default formatStylish

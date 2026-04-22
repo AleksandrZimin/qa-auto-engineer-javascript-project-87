@@ -1,4 +1,5 @@
 import globals from 'globals'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default [
   {
@@ -6,23 +7,21 @@ export default [
   },
   {
     files: ['**/*.js'],
+    plugins: { '@stylistic': stylistic },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: {
-        ...globals.node,
-      },
+      globals: { ...globals.node },
     },
     rules: {
       'no-console': 'off',
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/eol-last': ['error', 'always'],
     },
   },
   {
     files: ['**/__tests__/**/*.js'],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
-    },
+    languageOptions: { globals: { ...globals.jest } },
   },
 ]

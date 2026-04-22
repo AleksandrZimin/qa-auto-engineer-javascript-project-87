@@ -4,7 +4,7 @@ const parsers = {
   json: JSON.parse,
   yaml: yaml.load,
   yml: yaml.load,
-};
+}
 
 const parse = (content, format) => {
   const parser = parsers[format]
@@ -12,6 +12,6 @@ const parse = (content, format) => {
     throw new Error(`Unknown format: ${format}`)
   }
   return parser(content)
-};
+}
 
-export default parse;
+export default parse
