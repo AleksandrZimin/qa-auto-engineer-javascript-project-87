@@ -10,7 +10,7 @@ const buildPath = (path, key) => (path ? `${path}.${key}` : key)
 
 const formatPlain = (diff, path = '') => {
   const lines = diff
-    .filter(node => node.type !== 'unchanged')
+    .filter((node) => node.type !== 'unchanged')
     .map((node) => {
       const fullPath = buildPath(path, node.key)
       switch (node.type) {

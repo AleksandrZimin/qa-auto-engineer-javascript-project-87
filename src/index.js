@@ -9,7 +9,7 @@ const readFile = (filepath) => {
   return fs.readFileSync(absolutePath, 'utf-8')
 }
 
-const getFormat = filepath => path.extname(filepath).slice(1).toLowerCase()
+const getFormat = (filepath) => path.extname(filepath).slice(1).toLowerCase()
 
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
   const content1 = readFile(filepath1)
