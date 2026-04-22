@@ -1,4 +1,4 @@
-import yaml from 'js-yaml';
+import yaml from 'js-yaml'
 
 const parsers = {
   json: JSON.parse,
@@ -7,11 +7,11 @@ const parsers = {
 };
 
 const parse = (content, format) => {
-  const parser = parsers[format];
+  const parser = parsers[format]
   if (!parser) {
-    throw new Error(`Unknown format: ${format}`);
+    throw new Error(`Unknown format: ${format}`)
   }
-  return parser(content);
+  return parser(content)
 };
 
 export default parse;
