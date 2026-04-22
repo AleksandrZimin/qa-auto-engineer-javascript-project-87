@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 // Пункт 4: константа и функция для отступов
 const INDENT_SIZE = 4
-const getIndent = (depth) => ' '.repeat(INDENT_SIZE * depth)
+const getIndent = depth => ' '.repeat(INDENT_SIZE * depth)
 
 const formatValue = (value, depth) => {
   if (!_.isObject(value)) return String(value)
@@ -16,7 +16,7 @@ const formatValue = (value, depth) => {
 
 const formatStylish = (diff, depth = 0) => {
   const indent = getIndent(depth)
-  const lines = diff.map((node) => {
+  const lines = diff.map(node => {
     switch (node.type) {
       case 'added':
         return `${indent}  + ${node.key}: ${formatValue(node.value, depth + 1)}`

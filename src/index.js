@@ -4,12 +4,12 @@ import buildDiff from './buildDiff.js'
 import format from './formatters/index.js'
 import parse from './parser.js'
 
-const readFile = (filepath) => {
+const readFile = filepath => {
   const absolutePath = path.resolve(process.cwd(), filepath)
   return fs.readFileSync(absolutePath, 'utf-8')
 }
 
-const getFormat = (filepath) => path.extname(filepath).slice(1).toLowerCase()
+const getFormat = filepath => path.extname(filepath).slice(1).toLowerCase()
 
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
   const content1 = readFile(filepath1)
