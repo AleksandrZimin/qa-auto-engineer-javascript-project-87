@@ -1,27 +1,26 @@
-import fs from 'fs'
-import path from 'path'
-import yaml from 'js-yaml'
-import buildDiff from './buildDiff.js'
-import format from './formatters/index.js'
+import fs from 'fs';
+import path from 'path';
+import buildDiff from './buildDiff.js';
+import format from './formatters/index.js';
+import parse from './parser.js';
 
 const readFile = (filepath) => {
-  const absolutePath = path.resolve(process.cwd(), filepath)
-  const content = fs.readFileSync(absolutePath, 'utf-8')
-  const inputFormat = path.extname(filepath).slice(1)
+  const absolutePath = path.resolve(process.cwd(), filepath);
+  return fs.readFileSync(absolutePath, 'utf-8');
+};
 
-  switch (inputFormat) {
-    case 'json': return JSON.parse(content)
-    case 'yml':
-    case 'yaml': return yaml.load(content)
-    default: throw new Error(`Unknown input format: '${inputFormat}'`)
-  }
-}
+const getFormat = (filepath) => path.extname(filepath).slice(1).toLowerCase();
 
+// Добавляем outputFormat как параметр со значением по умолчанию
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
-  const data1 = readFile(filepath1)
-  const data2 = readFile(filepath2)
-  const diff = buildDiff(data1, data2)
-  return format(diff, outputFormat)
-}
+  const content1 = readFile(filepath1);
+  const content2 = readFile(filepath2);
 
-export default genDiff
+  const data1 = parse(content1, getFormat(filepath1));
+  const data2 = parse(content2, getFormat(filepath2));
+  const diff = buildDiff(data1, data2);
+
+  return format(diff, outputFormat);
+};
+
+export default genDiff;

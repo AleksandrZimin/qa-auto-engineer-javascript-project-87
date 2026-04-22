@@ -15,9 +15,16 @@ CLI-утилита для сравнения двух конфигурацион
 
 ## Установка
 
+Клонируем репозиторий
 ```bash
 git clone https://github.com/AleksandrZimin/qa-auto-engineer-javascript-project-87.git
+```
+Переходим в папку проекта
+```bash
 cd qa-auto-engineer-javascript-project-87
+```
+Устанавливаем зависимости
+```bash
 make install
 ```
 
@@ -27,20 +34,24 @@ make install
 
 ### Через node (рекомендуется)
 
+Справка
 ```bash
-# Справка
 node bin/gendiff.js -h
-
-# Сравнение JSON файлов (формат stylish по умолчанию)
+```
+Сравнение JSON файлов (формат stylish по умолчанию)
+```bash
 node bin/gendiff.js __fixtures__/file3.json __fixtures__/file4.json
-
-# Сравнение YAML файлов
+```
+Сравнение YAML файлов
+```bash
 node bin/gendiff.js __fixtures__/file3.yml __fixtures__/file4.yml
-
-# Вывод в формате plain
+```
+Вывод в формате plain
+```bash
 node bin/gendiff.js --format plain __fixtures__/file3.json __fixtures__/file4.json
-
-# Вывод в формате json
+```
+Вывод в формате json
+```bash
 node bin/gendiff.js --format json __fixtures__/file3.json __fixtures__/file4.json
 ```
 
@@ -156,10 +167,19 @@ console.log(diff);
 
 ## Команды разработки
 
+Установка зависимостей:
 ```bash
-make install    # установка зависимостей
-make test       # запуск тестов
-make lint       # проверка линтером
+npm install
+```
+
+Запуск тестов:
+```bash
+npm run test
+```
+
+Запуск линтера:
+```bash
+npm run lint
 ```
 ---
 
